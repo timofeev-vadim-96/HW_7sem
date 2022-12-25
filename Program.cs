@@ -25,8 +25,7 @@ int [,] GetMatrix(int m, int n)
 
 void GetElement(int [,] array, int A, int B)
 {
-    if (A > array.GetLength(0) || B > array.GetLength(1)) System.Console.WriteLine("Такого элемента в массиве нет");
-    else 
+    if (A < array.GetLength(0) && B < array.GetLength(1)) 
     {
         for (int i = 0; i < array.GetLength(0); i++)
         {
@@ -36,6 +35,7 @@ void GetElement(int [,] array, int A, int B)
             }
         }
     }
+    else System.Console.WriteLine("Такого номера нет");
     
 }
 
