@@ -1,26 +1,45 @@
-﻿// Задача 47. Задайте двумерный массив размером m×n, заполненный случайными вещественными числами.
+﻿// Задача 50. Напишите программу, которая на вход принимает позиции элемента в двумерном массиве, 
+// и возвращает значение этого элемента или же указание, что такого элемента нет.
 
-// m = 3, n = 4.
+// Например, задан массив:
 
-// 0,5 7 -2 -0,2
+// 1 4 7 2
 
-// 1 -3,3 8 -9,9
+// 5 9 2 3
 
-// 8 7,8 -7,1 9
-double [,] GetMatrix(int m, int n)
+// 8 4 2 4
+
+// 17 -> такого числа в массиве нет
+int [,] GetMatrix(int m, int n)
 {
-    double [,] matrix = new double[m,n];
+    int [,] matrix = new int[m,n];
     for (int i = 0; i < matrix.GetLength(0); i++)
     {
         for (int j = 0; j < matrix.GetLength(1); j++)
         {
-            matrix [i,j] = Math.Round(new Random().NextDouble() * 100, 2);
+            matrix [i,j] = new Random().Next(0, 10);
         }
     }
     return matrix;
 }
 
-void PrintMatrix(double [,] InputMatrix)
+void GetElement(int [,] array, int A, int B)
+{
+    if (A > array.GetLength(0) || B > array.GetLength(1)) System.Console.WriteLine("Такого элемента в массиве нет");
+    else 
+    {
+        for (int i = 0; i < array.GetLength(0); i++)
+        {
+            for (int j = 0; j < array.GetLength(1); j++)
+            {
+                if (i==A && j==B) System.Console.WriteLine($"Ваш элемент в массиве = {array [i,j]}");
+            }
+        }
+    }
+    
+}
+
+void PrintMatrix(int [,] InputMatrix)
 {
     for (int i = 0; i < InputMatrix.GetLength(0); i++)
     {
@@ -37,8 +56,15 @@ int rows = Convert.ToInt32(Console.ReadLine());
 System.Console.WriteLine("Введите количество столбцов:");
 int columns = Convert.ToInt32(Console.ReadLine());
 
-double [,] result = GetMatrix(rows, columns);
+int [,] result = GetMatrix(rows, columns);
 System.Console.WriteLine("Двумерный массив");
 PrintMatrix(result);
 
+System.Console.WriteLine("Введите номер строки элемента в массиве:");
+int element0 = Convert.ToInt32(Console.ReadLine());
+
+System.Console.WriteLine("Введите номер столбца элемента в массиве:");
+int element1 = Convert.ToInt32(Console.ReadLine());
+
+GetElement(result, element0-1, element1-1);
 
