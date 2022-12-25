@@ -18,18 +18,6 @@ int [,] GetMatrix(int m, int n)
     return matrix;
 }
 
-double [,] GetColumnsSum(double [,] array)
-{
-    double columnSum = 0;
-    for (int i = 0; i < array.GetLength(0); i++)
-    {
-        for (int j = 0; j < array.GetLength(1); j++)
-        {
-            columnSum+=array[i,j];
-        }
-    }
-    return array;
-}
 
 void PrintMatrix(int [,] InputMatrix)
 {
@@ -48,8 +36,24 @@ int rows = Convert.ToInt32(Console.ReadLine());
 System.Console.WriteLine("Введите количество столбцов:");
 int columns = Convert.ToInt32(Console.ReadLine());
 
+int [,] GetColumnsSum(int [,] array)
+{
+    double columnSum = 0;
+    for (int i = 0; i < array.GetLength(0); i++)
+    {
+        for (int j = 0; j < array.GetLength(1); j++)
+        {
+            columnSum+=array[j,i];
+        }
+        System.Console.WriteLine($"Среднее арифметическое в {i+1} столбце = {columnSum/columns}");
+        columnSum = 0;
+    }
+    return array;
+}
+
+
 int [,] result = GetMatrix(rows, columns);
 System.Console.WriteLine("Двумерный массив");
 PrintMatrix(result);
-
+GetColumnsSum(result);
 
